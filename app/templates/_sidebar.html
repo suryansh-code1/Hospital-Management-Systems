@@ -1,0 +1,18 @@
+<aside id="sidebar" class="sidebar bg-white border-end" style="min-width: 260px;" aria-label="Sidebar navigation">
+  <div class="list-group list-group-flush">
+    {% if current_user.is_authenticated %}
+      {% if current_user.role == 'admin' %}
+        <a href="/admin/dashboard" class="list-group-item list-group-item-action"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a>
+        <a href="/admin/doctors" class="list-group-item list-group-item-action"><i class="bi bi-person-badge me-2"></i>Doctors</a>
+        <a href="/admin/departments" class="list-group-item list-group-item-action"><i class="bi bi-diagram-3 me-2"></i>Departments</a>
+        <a href="/admin/appointments" class="list-group-item list-group-item-action"><i class="bi bi-calendar-event me-2"></i>Appointments</a>
+        <a href="/admin/search" class="list-group-item list-group-item-action"><i class="bi bi-search me-2"></i>Search</a>
+      {% elif current_user.role == 'doctor' %}
+        <a href="/doctor/dashboard" class="list-group-item list-group-item-action"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a>
+      {% elif current_user.role == 'patient' %}
+        <a href="/patient/dashboard" class="list-group-item list-group-item-action"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a>
+        <a href="/patient/book" class="list-group-item list-group-item-action"><i class="bi bi-calendar-plus me-2"></i>Book Appointment</a>
+      {% endif %}
+    {% endif %}
+  </div>
+</aside>

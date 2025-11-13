@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>{{ action }} Doctor</h3>
+<form method="post">
+  {{ form.hidden_tag() }}
+  <div class="row g-3">
+    <div class="col-md-6">{{ form.name.label }} {{ form.name(class='form-control') }}</div>
+    <div class="col-md-6">{{ form.email.label }} {{ form.email(class='form-control') }}</div>
+    <div class="col-md-6">{{ form.specialization_id.label }} {{ form.specialization_id(class='form-select') }}</div>
+    <div class="col-md-6 form-check mt-4">{{ form.is_active(class='form-check-input') }} {{ form.is_active.label(class='form-check-label') }}</div>
+    <div class="col-md-6">{{ form.password.label }} {{ form.password(class='form-control') }}</div>
+  </div>
+  <div class="mt-3">{{ form.submit(class='btn btn-success') }}</div>
+</form>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% macro avatar(name, size='48') %}
+  {% set safe = (name or '').strip() %}
+  {% set parts = safe.split() %}
+  {% set first = parts[0][0] if parts|length > 0 and parts[0]|length > 0 else '?' %}
+  {% set second = parts[1][0] if parts|length > 1 and parts[1]|length > 0 else '' %}
+  <div class="avatar" style="width:{{size}}px;height:{{size}}px;" aria-hidden="true">
+    <span>{{ (first ~ second)|upper }}</span>
+  </div>
+{% endmacro %}
+
+{% macro metric_card(title, value, icon_html, small_text=None) %}
+  <div class="card metric shadow-sm">
+    <div class="card-body d-flex align-items-center">
+      <div class="icon me-3">{{ icon_html|safe }}</div>
+      <div>
+        <div class="h6 text-muted mb-1">{{ title }}</div>
+        <div class="h3 mb-0">{{ value }}</div>
+        {% if small_text %}<div class="small text-muted">{{ small_text }}</div>{% endif %}
+      </div>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro appointment_row(a) %}
+  <tr>
+    <td>{{ a.date }}</td>
+    <td>{{ a.time }}</td>
+    <td>{{ a.doctor.name if a.doctor else '-' }}</td>
+    <td>{{ a.patient.name if a.patient else '-' }}</td>
+    <td><span class="badge bg-secondary">{{ a.status }}</span></td>
+    <td class="text-end">
+      <a href="/doctor/appointment/{{ a.id }}" class="btn btn-sm btn-outline-primary" aria-label="Open appointment {{ a.id }}" data-bs-toggle="tooltip" title="Open">
+        <i class="bi bi-box-arrow-up-right"></i>
+      </a>
+    </td>
+  </tr>
+{% endmacro %}
+
+{% macro doctor_list_item(d) %}
+  <div class="d-flex align-items-center py-2">
+    {{ avatar(d.name, '40') }}
+    <div class="ms-3">
+      <div class="fw-semibold">{{ d.name }}</div>
+      <div class="text-muted small">{{ d.specialization.name if d.specialization else '' }}</div>
+    </div>
+    {% if d.is_active %}<span class="badge bg-success ms-auto">Available</span>{% else %}<span class="badge bg-secondary ms-auto">Inactive</span>{% endif %}
+  </div>
+{% endmacro %}

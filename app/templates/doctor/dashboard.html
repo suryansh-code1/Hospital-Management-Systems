@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+{% from 'macros.html' import appointment_row %}
+<h3 class="mb-3">Doctor Dashboard</h3>
+<div class="card">
+  <div class="table-responsive">
+    <table class="table table-striped align-middle mb-0">
+      <thead class="table-light"><tr><th>Date</th><th>Time</th><th>Doctor</th><th>Patient</th><th class="text-end">Actions</th></tr></thead>
+      <tbody>
+        {% for a in appointments %}
+          {{ appointment_row(a) }}
+        {% else %}
+          <tr><td colspan="5" class="text-center text-muted py-4">No appointments scheduled</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
