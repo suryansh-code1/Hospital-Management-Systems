@@ -98,7 +98,6 @@ The application will start at `http://127.0.0.1:5000/` by default.
 - **create_db.py**: Database initialization script that creates all tables and seeds an admin user
 - **requirements.txt**: Lists all Python dependencies needed to run the project
 - **.flaskenv**: Flask configuration file (app name and environment settings)
-- **PR.md**: Documentation of UI improvements and design changes
 
 ### app Directory
 
